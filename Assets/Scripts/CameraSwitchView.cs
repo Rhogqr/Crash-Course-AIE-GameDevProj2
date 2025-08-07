@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CameraSwitchView : MonoBehaviour
 {
     public bool mouseInZone = false;
+    Quaternion lookRotation;
+    public int degreesToTurn;
+    public GameObject cameraTarget;
 
+    private Coroutine LookCoroutine;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +25,52 @@ public class CameraSwitchView : MonoBehaviour
         // need to add animation / slow pan in code for the camera so that it doesnt just zip around, good enough for now
         if (Input.mousePosition.x < Screen.width * 1/10 && mouseInZone == false)
         {
-            transform.Rotate(0, -90, 0);
+
+            Instantiate(cameraTarget);
+            Debug.Log("Spawned CameraTarget");
             mouseInZone = true;
+            degreesToTurn = -90;
+            
+            if (LookCoroutine != null)
+            {
+                StopCoroutine(LookCoroutine);
+                Debug.Log("test 1");
+            }
+            LookCoroutine = StartCoroutine(LookAt());  
         }
         else if (Input.mousePosition.x > Screen.width * 9/ 10 && mouseInZone == false)
         {
-            transform.Rotate(0, 90, 0);
+            Instantiate(cameraTarget);
+            Debug.Log("Spawned CameraTarget");
             mouseInZone = true;
+            degreesToTurn = 90;;
+
+            if (LookCoroutine != null)
+            {
+                StopCoroutine(LookCoroutine);
+                Debug.Log("test 2");
+            }
+            LookCoroutine = StartCoroutine(LookAt());
         }
         else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10)
         {
             mouseInZone = false;
         }
     }
+
+    private IEnumerator LookAt()
+    {
+        //yield return new WaitForEndOfFrame();
+        lookRotation = Quaternion.LookRotation(cameraTarget.transform.position - transform.position);
+
+        Debug.Log("LookRotation = " + lookRotation);
+        float time = 0;
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+            time += Time.deltaTime * 1;
+            yield return null;
+        }
+    }
+
 }
