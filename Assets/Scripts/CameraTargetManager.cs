@@ -13,11 +13,12 @@ public class CameraTargetManager : MonoBehaviour
         CameraSwitchView = Camera.GetComponent<CameraSwitchView>(); 
         transform.Rotate(0, CameraSwitchView.degreesToTurn, 0);
         transform.position = transform.forward * 50;
+        Destroy(this.gameObject, 3f);
     }
 
     // Update is called once per frame
     void Update()
     {
-            Destroy(this, 3);
+            
     }
 }

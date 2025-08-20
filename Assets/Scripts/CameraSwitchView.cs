@@ -10,7 +10,8 @@ public class CameraSwitchView : MonoBehaviour
     Quaternion lookRotation;
     public int degreesToTurn;
     public GameObject cameraTarget;
-
+    GameObject cameraTargetDummy;
+    public bool delayCheck = false;
     private Coroutine LookCoroutine;
     
     // Start is called before the first frame update
@@ -60,17 +61,19 @@ public class CameraSwitchView : MonoBehaviour
 
     private IEnumerator LookAt()
     {
-        //yield return new WaitForEndOfFrame();
-        lookRotation = Quaternion.LookRotation(cameraTarget.transform.position - transform.position);
+        yield return new WaitForSeconds(1f);
+        cameraTargetDummy = GameObject.FindGameObjectWithTag("Target");
+            lookRotation = Quaternion.LookRotation(cameraTargetDummy.transform.position - transform.position);
+        
 
-        Debug.Log("LookRotation = " + lookRotation);
-        float time = 0;
-        while (time < 1)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-            time += Time.deltaTime * 1;
-            yield return null;
-        }
+            Debug.Log("LookRotation = " + lookRotation);
+            float time = 0;
+            while (time < 1)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+                time += Time.deltaTime * 1;
+                yield return null;
+            }
     }
 
 }

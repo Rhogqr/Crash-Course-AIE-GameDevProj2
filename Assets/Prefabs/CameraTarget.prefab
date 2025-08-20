@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6507368162266728625}
   m_Layer: 0
   m_Name: CameraTarget
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,4 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3f55194a79f6f41b7936e66b912136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraSwitchView: {fileID: 0}
