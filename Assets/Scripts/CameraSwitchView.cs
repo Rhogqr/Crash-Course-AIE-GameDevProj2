@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
 
 public class CameraSwitchView : MonoBehaviour
 {
     public bool mouseInZone = false;
     Quaternion lookRotation;
-    public int degreesToTurn;
+    public float degreesToTurn;
     public GameObject cameraTarget;
     GameObject cameraTargetDummy;
     public bool delayCheck = false;
@@ -30,7 +31,7 @@ public class CameraSwitchView : MonoBehaviour
             Instantiate(cameraTarget);
             Debug.Log("Spawned CameraTarget");
             mouseInZone = true;
-            degreesToTurn = -90;
+            degreesToTurn = -90 + degreesToTurn;
             
             if (LookCoroutine != null)
             {
@@ -44,7 +45,7 @@ public class CameraSwitchView : MonoBehaviour
             Instantiate(cameraTarget);
             Debug.Log("Spawned CameraTarget");
             mouseInZone = true;
-            degreesToTurn = 90;;
+            degreesToTurn = 90 + degreesToTurn;
 
             if (LookCoroutine != null)
             {
@@ -61,14 +62,14 @@ public class CameraSwitchView : MonoBehaviour
 
     private IEnumerator LookAt()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForEndOfFrame();
         cameraTargetDummy = GameObject.FindGameObjectWithTag("Target");
             lookRotation = Quaternion.LookRotation(cameraTargetDummy.transform.position - transform.position);
         
 
             Debug.Log("LookRotation = " + lookRotation);
             float time = 0;
-            while (time < 1)
+            while (time < 2)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
                 time += Time.deltaTime * 1;
