@@ -1,4 +1,4 @@
-/* using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
     
-    private float maxHealth = 1f;
+    private float maxHealth = 100f;
     private float currentHealth;
     
     // Start is called before the first frame update
@@ -20,9 +20,13 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentHealth -= 1f * Time.deltaTime;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        UpdateHealthBar();
+
         if (Input.GetKeyDown(KeyCode.H))
         {
-            currentHealth -= 0.25f;
+            currentHealth += 1f;
             UpdateHealthBar();
         }
     }
@@ -30,6 +34,6 @@ public class HealthBar : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthBar.fillAmount = currentHealth / maxHealth;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
     }
 }
-*/

@@ -1,4 +1,4 @@
-/* using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class OxygenBar : MonoBehaviour
 {
     [SerializeField] private Image oxygenBar;
     
-    private float maxOxygen = 1f;
+    private float maxOxygen = 100f;
     private float currentOxygen;
     
     // Start is called before the first frame update
@@ -20,9 +20,13 @@ public class OxygenBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentOxygen -= 0.5f * Time.deltaTime;
+        currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
+        UpdateOxygenBar();
+
         if (Input.GetKeyDown(KeyCode.O))
         {
-            currentOxygen -= 0.25f;
+            currentOxygen += 1f;
             UpdateOxygenBar();
         }
     }
@@ -30,6 +34,6 @@ public class OxygenBar : MonoBehaviour
     private void UpdateOxygenBar()
     {
         oxygenBar.fillAmount = currentOxygen / maxOxygen;
+        currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
     }
 }
-*/

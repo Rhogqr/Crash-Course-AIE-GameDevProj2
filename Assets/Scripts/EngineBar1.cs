@@ -1,4 +1,4 @@
-/* using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class EngineBar : MonoBehaviour
 {
     [SerializeField] private Image engineBar;
     
-    private float maxEngine = 1f;
+    private float maxEngine = 100f;
     private float currentEngine;
     
     // Start is called before the first frame update
@@ -20,9 +20,13 @@ public class EngineBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentEngine -= 0.2f * Time.deltaTime;
+        currentEngine = Mathf.Clamp(currentEngine, 0f, maxEngine);
+        UpdateEngineBar();
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            currentEngine -= 0.25f;
+            currentEngine += 1f;
             UpdateEngineBar();
         }
     }
@@ -30,6 +34,6 @@ public class EngineBar : MonoBehaviour
     private void UpdateEngineBar()
     {
         engineBar.fillAmount = currentEngine / maxEngine;
+        currentEngine = Mathf.Clamp(currentEngine, 0f, maxEngine);
     }
 }
-*/
