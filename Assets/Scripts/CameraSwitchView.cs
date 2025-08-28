@@ -16,6 +16,7 @@ public class CameraSwitchView : MonoBehaviour
     private Coroutine LookCoroutine;
     public float turnSpeed = 0.33f;
     int currentRotation = 1;
+
     
     // Start is called before the first frame update
     void Start()
@@ -57,7 +58,6 @@ public class CameraSwitchView : MonoBehaviour
         else if (Input.mousePosition.x > Screen.width * 9 / 10 && mouseInZone == false && currentRotation != 0)
         {
             Instantiate(cameraTarget);
-            Debug.Log("Spawned CameraTarget");
 
             mouseInZone = true;
 
@@ -71,10 +71,9 @@ public class CameraSwitchView : MonoBehaviour
 
             LookCoroutine = StartCoroutine(LookAt());
         }
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y < Screen.width * 1 / 10 && mouseInZone == false)
+        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y < Screen.width * 1 / 10 && mouseInZone == false && !Input.GetKey(KeyCode.Mouse0))
         {
             Instantiate(cameraTarget);
-            Debug.Log("Spawned CameraTarget");
 
             mouseInZone = true;
             degreesToTurn = 180 * currentRotation;

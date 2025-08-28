@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 // as of now, most of this script does nothing. its currently linked to the door so dont delete this please!
 // i (reuben) plan to use this as storage for variables that revolve around the player (current rotation, time left, player health, etc.)
@@ -10,15 +11,42 @@ public class PlayerStatsManager : MonoBehaviour
 {
     public GameObject mainPlayerCam;
     public string playerDirection;
+    public TextMeshProUGUI timerText;
+    public GameObject LoseText;
+    public float timerTime;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
+        timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        GetRotationAsString();
+        CountdownLossManager();
+
+    }
+
+    private void CountdownLossManager()
+    {
+        if (timerTime >= 0)
+        {
+            timerTime -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(timerTime / 60);
+            int seconds = Mathf.FloorToInt(timerTime % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            LoseText.SetActive(true);
+        }
+    }
+
+    private void GetRotationAsString()
     {
         // because of the way that the camera animation works, the timing on this update is inconsistent. fix later?
         float currentDirection = mainPlayerCam.transform.rotation.eulerAngles.y;
