@@ -1039,10 +1039,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainPlayerCam: {fileID: 963194225}
+  mDT: {fileID: 0}
   playerDirection: 
   timerText: {fileID: 0}
   LoseText: {fileID: 1954619493}
-  timerTime: 180
+  timerTime: 10
+  isGameOver: 0
 --- !u!1 &1210879927
 GameObject:
   m_ObjectHideFlags: 0

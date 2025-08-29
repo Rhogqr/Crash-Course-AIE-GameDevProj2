@@ -7,6 +7,9 @@ using System;
 
 public class CameraSwitchView : MonoBehaviour
 {
+    public PlayerStatsManager pSM;
+    public MainDoorTest mDT;
+
     public bool mouseInZone = false;
     Quaternion lookRotation;
     public float degreesToTurn;
@@ -21,15 +24,18 @@ public class CameraSwitchView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
+        mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // need to add animation / slow pan in code for the camera so that it doesnt just zip around, good enough for now
+        if (!pSM.isGameOver && mDT.progressCheck > 0) CameraMovement();
+    }
 
-
+    private void CameraMovement()
+    {
         // Each Space is the next comment 
 
         // Spawns the Camera Target
@@ -98,7 +104,7 @@ public class CameraSwitchView : MonoBehaviour
         }
 
         // if mouse not in zone, activate screen flipping again
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y > Screen.width * 1/10)
+        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y > Screen.width * 1 / 10)
         {
             mouseInZone = false;
         }

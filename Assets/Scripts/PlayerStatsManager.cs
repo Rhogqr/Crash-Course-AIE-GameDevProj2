@@ -10,16 +10,19 @@ using TMPro;
 public class PlayerStatsManager : MonoBehaviour
 {
     public GameObject mainPlayerCam;
+    public MainDoorTest mDT;
     public string playerDirection;
     public TextMeshProUGUI timerText;
     public GameObject LoseText;
     public float timerTime;
+    public bool isGameOver = false;
     
 
     // Start is called before the first frame update
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
+        mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
     }
 
@@ -33,16 +36,17 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void CountdownLossManager()
     {
-        if (timerTime >= 0)
+        if (timerTime >= 1 && !isGameOver && mDT.progressCheck > 0)
         {
             timerTime -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(timerTime / 60);
             int seconds = Mathf.FloorToInt(timerTime % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
-        else
+        else if (timerTime <= 1)
         {
             LoseText.SetActive(true);
+            isGameOver = true;
         }
     }
 

@@ -23,14 +23,14 @@ public class MainDoorTest : MonoBehaviour
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         handlePivot = GameObject.Find("HandlePivot");
         doorPivot = GameObject.Find("DoorPivot");
-        WinText = GameObject.Find("WinText"); WinText.SetActive(false);
+        WinText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         // checks if facing door, and if left mouse is held down
-        if (pSM.playerDirection == "Backward" && Input.GetKey(KeyCode.Mouse0) && progressCheck > 0)
+        if (pSM.playerDirection == "Backward" && Input.GetKey(KeyCode.Mouse0) && progressCheck > 0 && !pSM.isGameOver)
         {
             MousePosChecker();
         }
