@@ -16,6 +16,7 @@ public class PlayerStatsManager : MonoBehaviour
     public GameObject LoseText;
     public float timerTime;
     public bool isGameOver = false;
+    public int targetFPS = 60;
     
 
     // Start is called before the first frame update
@@ -78,5 +79,10 @@ public class PlayerStatsManager : MonoBehaviour
         {
             // how
         }
+    }
+
+    private void Awake()
+    {
+        Application.targetFrameRate = targetFPS;
     }
 }
