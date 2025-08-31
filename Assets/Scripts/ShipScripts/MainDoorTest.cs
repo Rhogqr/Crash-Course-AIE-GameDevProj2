@@ -5,24 +5,36 @@ using UnityEngine;
 public class MainDoorTest : MonoBehaviour
 {
     PlayerStatsManager pSM;
+
     GameObject handlePivot;
     GameObject doorPivot;
+
     Camera mainCam;
     Vector2 mousePos;
+
     bool fullCycleComplete = false;
     public int progressCheck;
+    float rotZ;
+
     float timer;
     public float doorAnimSpeed;
-    float rotZ;
+
     public GameObject WinText;
+
+    public AudioClip onCycleCompleteAudioClip;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         // linking gameobjects to things in scene
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
+
         handlePivot = GameObject.Find("HandlePivot");
         doorPivot = GameObject.Find("DoorPivot");
+
+        audioSource = GetComponent<AudioSource>();
+
         WinText.SetActive(false);
     }
 
@@ -61,6 +73,8 @@ public class MainDoorTest : MonoBehaviour
         {
             progressCheck--;
             fullCycleComplete = false;
+            audioSource.clip = onCycleCompleteAudioClip;
+            audioSource.Play();
         }
 
         if (rotZ >= -180 && rotZ <= -90)

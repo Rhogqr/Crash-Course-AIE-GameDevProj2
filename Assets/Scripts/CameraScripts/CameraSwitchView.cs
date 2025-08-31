@@ -12,20 +12,25 @@ public class CameraSwitchView : MonoBehaviour
 
     public bool mouseInZone = false;
     Quaternion lookRotation;
+
     public float degreesToTurn;
     public GameObject cameraTarget;
     GameObject cameraTargetDummy;
-    public bool delayCheck = false;
+
     private Coroutine LookCoroutine;
     public float turnSpeed = 0.33f;
     int currentRotation = 1;
 
-    
+    public AudioClip onInteractAudioEventClip;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

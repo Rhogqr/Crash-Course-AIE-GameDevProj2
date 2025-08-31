@@ -10,12 +10,20 @@ using TMPro;
 public class PlayerStatsManager : MonoBehaviour
 {
     public GameObject mainPlayerCam;
+
     public MainDoorTest mDT;
+
     public string playerDirection;
+
     public TextMeshProUGUI timerText;
     public GameObject LoseText;
     public float timerTime;
     public bool isGameOver = false;
+
+    public AudioClip onInteractAudioEventClip;
+    AudioSource audioSource;
+
+    // this is a placeholder number but will likely be final, things will have to change to re set this
     public int targetFPS = 60;
     
 
@@ -23,8 +31,12 @@ public class PlayerStatsManager : MonoBehaviour
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
+
         mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
+
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,7 +44,17 @@ public class PlayerStatsManager : MonoBehaviour
     {
         GetRotationAsString();
         CountdownLossManager();
+        PlaySoundOnInteract();
 
+    }
+
+    private void PlaySoundOnInteract()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && (playerDirection == "Left" || playerDirection == "Right"))
+        {
+            audioSource.clip = onInteractAudioEventClip;
+            audioSource.Play();
+        }
     }
 
     private void CountdownLossManager()
