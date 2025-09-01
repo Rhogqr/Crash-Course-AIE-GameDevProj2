@@ -28,7 +28,7 @@ public class CameraSwitchView : MonoBehaviour
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
-        mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
+        mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -50,6 +50,7 @@ public class CameraSwitchView : MonoBehaviour
         // Start Looking
 
         if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0)
+            
         {
             Instantiate(cameraTarget);
             Debug.Log("Spawned CameraTarget");

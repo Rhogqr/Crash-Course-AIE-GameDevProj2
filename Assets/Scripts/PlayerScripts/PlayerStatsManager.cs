@@ -32,7 +32,7 @@ public class PlayerStatsManager : MonoBehaviour
     {
         mainPlayerCam = GameObject.Find("Main Camera");
 
-        mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
+        mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
 
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
 

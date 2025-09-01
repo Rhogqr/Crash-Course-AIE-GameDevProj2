@@ -12,7 +12,7 @@ public class RisingSky : MonoBehaviour
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
-        mDT = GameObject.Find("Door").GetComponent<MainDoorTest>();
+        mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         
         maxCountdownTime = pSM.timerTime;
     }
