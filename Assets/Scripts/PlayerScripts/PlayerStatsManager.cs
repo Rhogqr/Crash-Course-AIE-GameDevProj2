@@ -12,6 +12,8 @@ public class PlayerStatsManager : MonoBehaviour
     public GameObject mainPlayerCam;
 
     public MainDoorTest mDT;
+    public EngineBar engineBar;
+    public HealthBar healthBar;
 
     public string playerDirection;
 
@@ -33,6 +35,8 @@ public class PlayerStatsManager : MonoBehaviour
         mainPlayerCam = GameObject.Find("Main Camera");
 
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        engineBar = GameObject.Find("EngineCanvas").GetComponentInChildren<EngineBar>();
+        healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
 
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
 
@@ -42,10 +46,18 @@ public class PlayerStatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetRotationAsString();
-        CountdownLossManager();
-        PlaySoundOnInteract();
+        if (!isGameOver)
+        {
+            GetRotationAsString();
+            CountdownLossManager();
+            PlaySoundOnInteract();
 
+           if (engineBar.currentEngine <= 0 || healthBar.currentHealth <= 0)
+           {
+                LoseText.SetActive(true);
+                isGameOver = true;
+           }
+        }
     }
 
     private void PlaySoundOnInteract()
