@@ -1398,6 +1398,7 @@ GameObject:
   - component: {fileID: 724453292}
   - component: {fileID: 724453291}
   - component: {fileID: 724453290}
+  - component: {fileID: 724453294}
   m_Layer: 0
   m_Name: ShipLoader
   m_TagString: Untagged
@@ -1493,6 +1494,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!114 &724453294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724453289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6f86cd1526deb418d55861f61e7a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientNoise: {fileID: 8300000, guid: 9d2fca0829b2d444abfc8c3f10945574, type: 3}
 --- !u!1 &788128599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,7 +1964,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 0.7
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2986,10 +3000,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567f4102f7fc1a3438e5e1c77598de0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pSM: {fileID: 0}
+  mDT: {fileID: 0}
   mouseInZone: 0
   degreesToTurn: 0
   cameraTarget: {fileID: 5840502779243055500, guid: 7d82816f0557bd54db5c36636877578a, type: 3}
-  delayCheck: 0
+  turnSpeed: 0.33
+  onInteractAudioEventClip: {fileID: 0}
 --- !u!1 &1396315985
 GameObject:
   m_ObjectHideFlags: 0
