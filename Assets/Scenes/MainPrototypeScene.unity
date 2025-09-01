@@ -4101,7 +4101,7 @@ GameObject:
   - component: {fileID: 1282765311}
   - component: {fileID: 1282765310}
   m_Layer: 0
-  m_Name: Ambience
+  m_Name: AmbienceShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4119,13 +4119,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ba92d74009cc87143a4e13e81f95582d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 0.7
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 180
+  Priority: 10
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4490,7 +4490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6f86cd1526deb418d55861f61e7a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambientNoise: {fileID: 0}
+  ambientNoise: {fileID: 8300000, guid: 057fdb0995f37de4e9bbae0fbb8b1deb, type: 3}
 --- !u!82 &1368909559
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4501,15 +4501,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_audioClip: {fileID: 8300000, guid: 057fdb0995f37de4e9bbae0fbb8b1deb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 0.6
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 3
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4596,7 +4596,7 @@ Transform:
   m_GameObject: {fileID: 1368909557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.17, y: 0, z: 3.48}
+  m_LocalPosition: {x: -0.07, y: 0, z: -6.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4664,7 +4664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6f86cd1526deb418d55861f61e7a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambientNoise: {fileID: 0}
+  ambientNoise: {fileID: 8300000, guid: 81d9bfe5663e9d84da09e5bac6fc6568, type: 3}
 --- !u!82 &1406196079
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4675,15 +4675,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 81d9bfe5663e9d84da09e5bac6fc6568, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 5
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4770,7 +4770,7 @@ Transform:
   m_GameObject: {fileID: 1406196077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.69, y: 0, z: 2.29}
+  m_LocalPosition: {x: 4.273, y: 0, z: 11.529}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4806,7 +4806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6f86cd1526deb418d55861f61e7a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambientNoise: {fileID: 0}
+  ambientNoise: {fileID: 8300000, guid: addf90eef9903b14cb41313d3864661c, type: 3}
 --- !u!82 &1427338904
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4817,15 +4817,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: addf90eef9903b14cb41313d3864661c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 4
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4912,7 +4912,7 @@ Transform:
   m_GameObject: {fileID: 1427338902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.49, y: 1.82, z: 10.38}
+  m_LocalPosition: {x: -11.91, y: 0, z: -1.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7686,7 +7686,7 @@ Transform:
   m_GameObject: {fileID: 2055561864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.38, y: 0, z: -4.06}
+  m_LocalPosition: {x: 7.96, y: 0, z: 0.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
