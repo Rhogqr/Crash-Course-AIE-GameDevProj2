@@ -19,6 +19,8 @@ public class SineWaveAlt : MonoBehaviour
 
     public Vector2 xLimitsAlt = new Vector2(-2, 2);
 
+    public bool commsFailure;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,17 +32,38 @@ public class SineWaveAlt : MonoBehaviour
     {
         DrawSineWaveAlt();
         SineWaveDesync();
+        CommsFailChecker();
+    }
+
+    private void CommsFailChecker()
+    {
+        if (amplitude > 0.3f)
+        {
+            commsFailure = true;
+        }
+
+        else if (amplitude < 0.3 && frequency > 1.5f)
+        {
+            commsFailure = false;
+        }
+
+        if (frequency < 1.5f)
+        {
+            commsFailure = true;
+        }
     }
 
     private void SineWaveDesync()
     {
-        int random = UnityEngine.Random.Range(0, 120);
-        if (random == 119)
+        int random = UnityEngine.Random.Range(0, 15);
+        if (random == 14)
         {
-            amplitude += 0.0005f;
+            amplitude += 0.001f;
             frequency -= 0.001f;
-            amplitude = Mathf.Clamp(amplitude, 0.5f, 2f);
+            amplitude = Mathf.Clamp(amplitude, 0.125f, 0.5f);
             frequency = Mathf.Clamp(frequency, 1f, 2f);
+            ampSlider.value = amplitude;
+            freqSlider.value = frequency;
         }
     }
 
