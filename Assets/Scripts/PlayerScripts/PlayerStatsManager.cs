@@ -57,6 +57,7 @@ public class PlayerStatsManager : MonoBehaviour
                 LoseText.SetActive(true);
                 isGameOver = true;
            }
+           transform.rotation = mainPlayerCam.transform.rotation;
         }
     }
 
@@ -87,31 +88,39 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void GetRotationAsString()
     {
-        // because of the way that the camera animation works, the timing on this update is inconsistent. fix later?
-        float currentDirection = mainPlayerCam.transform.rotation.eulerAngles.y;
-        if (currentDirection == 0)
+        //// because of the way that the camera animation works, the timing on this update is inconsistent. fix later?
+        //float currentDirection = mainPlayerCam.transform.rotation.eulerAngles.y;
+        //if (currentDirection == 0)
+        //{
+        //    // Forward
+        //    playerDirection = "Forward";
+        //}
+        //else if (currentDirection == 270)
+        //{
+        //    // Left
+        //    playerDirection = "Left";
+        //}
+        //else if (currentDirection == 90)
+        //{
+        //    // Right
+        //    playerDirection = "Right";
+        //}
+        //else if (currentDirection == 180)
+        //{
+        //    // Backward
+        //    playerDirection = "Backward";
+        //}
+        //else
+        //{
+        //    // how
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Direction"))
         {
-            // Forward
-            playerDirection = "Forward";
-        }
-        else if (currentDirection == 270)
-        {
-            // Left
-            playerDirection = "Left";
-        }
-        else if (currentDirection == 90)
-        {
-            // Right
-            playerDirection = "Right";
-        }
-        else if (currentDirection == 180)
-        {
-            // Backward
-            playerDirection = "Backward";
-        }
-        else
-        {
-            // how
+            playerDirection = other.name;
         }
     }
 

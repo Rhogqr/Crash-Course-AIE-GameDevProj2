@@ -23,7 +23,6 @@ public class CameraSwitchView : MonoBehaviour
 
     public AudioClip onInteractAudioEventClip;
     AudioSource audioSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +48,7 @@ public class CameraSwitchView : MonoBehaviour
         // If you no longer need to turn, then stop turning
         // Start Looking
 
-        if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0)
+        if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0 && !Input.GetKey(KeyCode.Mouse0))
             
         {
             Instantiate(cameraTarget);
@@ -57,7 +56,7 @@ public class CameraSwitchView : MonoBehaviour
 
             mouseInZone = true;
 
-            degreesToTurn = Mathf.Clamp(-90 + degreesToTurn, -90, 90);
+            degreesToTurn = -90 + degreesToTurn;
 
             if (LookCoroutine != null)
             {
@@ -67,14 +66,13 @@ public class CameraSwitchView : MonoBehaviour
 
             LookCoroutine = StartCoroutine(LookAt());
         }
-        else if (Input.mousePosition.x > Screen.width * 9 / 10 && mouseInZone == false && currentRotation != 0)
+        else if (Input.mousePosition.x > Screen.width * 9 / 10 && mouseInZone == false && currentRotation != 0 && !Input.GetKey(KeyCode.Mouse0))
         {
             Instantiate(cameraTarget);
 
             mouseInZone = true;
 
-            degreesToTurn = Mathf.Clamp(90 + degreesToTurn, -90, 90);
-
+            degreesToTurn = 90 + degreesToTurn;
             if (LookCoroutine != null)
             {
                 StopCoroutine(LookCoroutine);
@@ -83,34 +81,34 @@ public class CameraSwitchView : MonoBehaviour
 
             LookCoroutine = StartCoroutine(LookAt());
         }
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y < Screen.width * 1 / 10 && mouseInZone == false && !Input.GetKey(KeyCode.Mouse0))
-        {
-            Instantiate(cameraTarget);
+        //else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y < Screen.width * 1 / 10 && mouseInZone == false && !Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    Instantiate(cameraTarget);
 
-            mouseInZone = true;
-            degreesToTurn = 180 * currentRotation;
+        //    mouseInZone = true;
+        //    degreesToTurn = 180 * currentRotation;
 
-            if (LookCoroutine != null)
-            {
-                StopCoroutine(LookCoroutine);
-                Debug.Log("test 2");
-            }
+        //    if (LookCoroutine != null)
+        //    {
+        //        StopCoroutine(LookCoroutine);
+        //        Debug.Log("test 2");
+        //    }
 
-            LookCoroutine = StartCoroutine(LookAt());
+        //    LookCoroutine = StartCoroutine(LookAt());
 
-            // Knows if to swap forward/back
-            if (currentRotation != 0)
-            {
-                currentRotation = 0;
-            }
-            else
-            {
-                currentRotation = 1;
-            }
-        }
+        //    // Knows if to swap forward/back
+        //    if (currentRotation != 0)
+        //    {
+        //        currentRotation = 0;
+        //    }
+        //    else
+        //    {
+        //        currentRotation = 1;
+        //    }
+        //}
 
         // if mouse not in zone, activate screen flipping again
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y > Screen.width * 1 / 10)
+        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10)
         {
             mouseInZone = false;
         }
