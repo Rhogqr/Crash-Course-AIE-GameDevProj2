@@ -5,9 +5,16 @@ using UnityEngine;
 public class EyeStunAlien : MonoBehaviour
 {
     PlayerStatsManager pSM;
-    public GameObject[] eyeGuys;
-    [SerializeField] string directionChecker;
 
+    public GameObject[] eyeGuys;
+
+    [SerializeField] string directionChecker;
+    bool isSummoned;
+    public bool isStunned;
+
+    [SerializeField] int eyeChance = 10;
+
+    [SerializeField] GameObject LightningEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +27,46 @@ public class EyeStunAlien : MonoBehaviour
     void Update()
     {
         EyeSpawn();
-    }
 
+        if (isSummoned)
+        {
+            StartCoroutine(VariableDelay());
+        }
+
+    }
+    IEnumerator VariableDelay()
+    {
+        yield return new WaitForSeconds(2);
+
+        int isPlayerMoved = 0;
+        for (int i = 0; i < eyeGuys.Length; i++)
+        {
+            if (eyeGuys[i].activeInHierarchy)
+            {
+                isPlayerMoved = i+1;
+                
+            }
+        }
+
+        if (isPlayerMoved > 0)
+        {
+            isStunned = true;
+
+            LightningEffect.SetActive(true);
+            yield return new WaitForSeconds(5);
+            Debug.Log(isStunned);
+            eyeGuys[isPlayerMoved-1].SetActive(false);
+            LightningEffect.SetActive(false);
+            isSummoned = false;
+            isStunned = false;
+        }
+        else
+        {
+            isSummoned = false;
+            isStunned = false;
+        }
+        isPlayerMoved = 0;
+    }
     private void EyeSpawn()
     {
         if (directionChecker != pSM.playerDirection)
@@ -32,8 +77,8 @@ public class EyeStunAlien : MonoBehaviour
             }
 
             int doEyeSpawn;
-            doEyeSpawn = Random.Range(0, 10);
-            if (doEyeSpawn == 9)
+            doEyeSpawn = Random.Range(0, eyeChance);
+            if (doEyeSpawn == 0)
             {
                 if (pSM.playerDirection == "Forward")
                 {
@@ -47,8 +92,16 @@ public class EyeStunAlien : MonoBehaviour
                 {
                     eyeGuys[2].SetActive(true);
                 }
+                isSummoned = true;
             }
+            else
+            {
+                isSummoned = false;
+            }
+
             directionChecker = pSM.playerDirection;
         }
+       
     }
+
 }
