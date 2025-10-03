@@ -10,16 +10,19 @@ public class EngineBar : MonoBehaviour
 
     PlayerStatsManager pSM;
     MainDoorTest mDT;
+    TaskDebuffAlien tDA;
 
     public float maxEngine = 100f;
     public float currentEngine;
     public float multiplier = 3f;
-
+    float temp;
     // Start is called before the first frame update
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
+        temp = multiplier;
 
         currentEngine = maxEngine;
         UpdateEngineBar();
@@ -30,6 +33,9 @@ public class EngineBar : MonoBehaviour
     {
         if (!pSM.isGameOver && mDT.progressCheck > 0)
         {
+            if (tDA.debuff1) multiplier = temp * 2f;
+            else multiplier = temp;
+
             currentEngine -= 0.2f * Time.deltaTime * multiplier;
             currentEngine = Mathf.Clamp(currentEngine, 0f, maxEngine);
             UpdateEngineBar();
