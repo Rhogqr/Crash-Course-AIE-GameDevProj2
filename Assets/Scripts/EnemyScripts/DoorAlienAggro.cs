@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DoorAlienAggro : MonoBehaviour
 {
-    public MainDoorTest mDT;
-    public PlayerStatsManager pSM;
-    public GameObject analogHorror;
+    MainDoorTest mDT;
+    PlayerStatsManager pSM;
+    [SerializeField] GameObject analogHorror;
     public int prevProgressCheck;
-    bool isSpinningTooFast;
+    public bool isSpinningTooFast;
 
     // Start is called before the first frame update
     void Start()

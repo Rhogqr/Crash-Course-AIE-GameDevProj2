@@ -10,16 +10,21 @@ public class EngineBar : MonoBehaviour
 
     PlayerStatsManager pSM;
     MainDoorTest mDT;
+    TaskDebuffAlien tDA;
+    EyeStunAlien eSA;
 
     public float maxEngine = 100f;
     public float currentEngine;
     public float multiplier = 3f;
-
+    float temp;
     // Start is called before the first frame update
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
+        eSA = GameObject.Find("Eye Prototypes").GetComponent<EyeStunAlien>();
+        temp = multiplier;
 
         currentEngine = maxEngine;
         UpdateEngineBar();
@@ -30,14 +35,20 @@ public class EngineBar : MonoBehaviour
     {
         if (!pSM.isGameOver && mDT.progressCheck > 0)
         {
+            if (tDA.debuff1) multiplier = temp * 2f;
+            else multiplier = temp;
+
             currentEngine -= 0.2f * Time.deltaTime * multiplier;
             currentEngine = Mathf.Clamp(currentEngine, 0f, maxEngine);
             UpdateEngineBar();
 
-            if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Right")
+            if (!eSA.isStunned)
             {
-                currentEngine += 1.5f;
-                UpdateEngineBar();
+                if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Right")
+                {
+                    currentEngine += 2.5f;
+                    UpdateEngineBar();
+                }
             }
         }
     }
