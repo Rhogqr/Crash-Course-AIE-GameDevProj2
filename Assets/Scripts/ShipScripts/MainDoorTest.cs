@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainDoorTest : MonoBehaviour
 {
     PlayerStatsManager pSM;
+    DoorAlienAggro dAA;
 
     GameObject handlePivot;
     GameObject doorPivot;
@@ -29,6 +30,7 @@ public class MainDoorTest : MonoBehaviour
     {
         // linking gameobjects to things in scene
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
+        dAA = GameObject.Find("DoorMonsterManager").GetComponent<DoorAlienAggro>();
 
         handlePivot = GameObject.Find("HandlePivot");
         doorPivot = GameObject.Find("DoorPivot");
@@ -41,11 +43,15 @@ public class MainDoorTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // checks if facing door, and if left mouse is held down
-        if (pSM.playerDirection == "Backward" && Input.GetKey(KeyCode.Mouse0) && progressCheck > 0 && !pSM.isGameOver)
+        if (!dAA.isSpinningTooFast)
         {
-            MousePosChecker();
+            // checks if facing door, and if left mouse is held down
+            if (pSM.playerDirection == "Backward" && Input.GetKey(KeyCode.Mouse0) && progressCheck > 0 && !pSM.isGameOver)
+            {
+                MousePosChecker();
+            }
         }
+        
         // if wheel is spun enough, then open the door (rotate it -90 over 90/doorAnimSpeed frames)
         if (progressCheck <= 0 && timer / doorAnimSpeed >= -90)
         {

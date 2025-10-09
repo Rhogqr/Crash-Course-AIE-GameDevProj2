@@ -10,6 +10,7 @@ public class HealthBar : MonoBehaviour
     PlayerStatsManager pSM;
     MainDoorTest mDT;
     TaskDebuffAlien tDA;
+    EyeStunAlien eSA;
 
     public float maxHealth = 100f;
     public float currentHealth;
@@ -22,6 +23,7 @@ public class HealthBar : MonoBehaviour
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
+        eSA = GameObject.Find("Eye Prototypes").GetComponent<EyeStunAlien>();
         temp = multiplier;
 
         currentHealth = maxHealth;
@@ -39,11 +41,13 @@ public class HealthBar : MonoBehaviour
             currentHealth -= 1f * Time.deltaTime * multiplier;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
             UpdateHealthBar();
-
-            if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Left")
+            if (!eSA.isStunned)
             {
-                currentHealth += 2.5f;
-                UpdateHealthBar();
+                if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Left")
+                {
+                    currentHealth += 2.5f;
+                    UpdateHealthBar();
+                }
             }
         }
     }
