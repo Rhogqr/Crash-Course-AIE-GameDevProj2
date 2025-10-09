@@ -35,7 +35,7 @@ public class PlayerStatsManager : MonoBehaviour
         mainPlayerCam = GameObject.Find("Main Camera");
 
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
-        engineBar = GameObject.Find("EngineCanvas").GetComponentInChildren<EngineBar>();
+        //engineBar = GameObject.Find("EngineCanvas").GetComponentInChildren<EngineBar>();
         healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
 
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
@@ -52,7 +52,7 @@ public class PlayerStatsManager : MonoBehaviour
             CountdownLossManager();
             PlaySoundOnInteract();
 
-           if (engineBar.currentEngine <= 0 || healthBar.currentHealth <= 0)
+           if (/*engineBar.currentEngine <= 0 ||*/ healthBar.currentHealth <= 0)
            {
                 LoseText.SetActive(true);
                 isGameOver = true;

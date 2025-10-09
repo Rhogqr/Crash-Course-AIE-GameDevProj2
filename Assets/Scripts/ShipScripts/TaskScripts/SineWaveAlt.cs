@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class SineWaveAlt : MonoBehaviour
 {
+    TaskDebuffAlien tDA;
+    
     public LineRenderer lineRenderer;
     public int pointsAlt;
 
@@ -19,17 +21,30 @@ public class SineWaveAlt : MonoBehaviour
 
     public Vector2 xLimitsAlt = new Vector2(-2, 2);
 
-    public bool commsFailure;
+    [SerializeField] bool commsFailure;
+
+    float multiplier = 1;
+    float tempMult;
 
     // Start is called before the first frame update
     void Start()
     {
+        tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
         lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (tDA.debuff1)
+        {
+            tempMult = multiplier * 3;
+        }
+        else
+        {
+            tempMult = multiplier;
+        }
+
         DrawSineWaveAlt();
         SineWaveDesync();
         CommsFailChecker();
@@ -58,8 +73,8 @@ public class SineWaveAlt : MonoBehaviour
         int random = UnityEngine.Random.Range(0, 15);
         if (random == 14)
         {
-            amplitude += 0.001f;
-            frequency -= 0.001f;
+            amplitude += 0.001f * tempMult;
+            frequency -= 0.001f * tempMult;
             amplitude = Mathf.Clamp(amplitude, 0.125f, 0.5f);
             frequency = Mathf.Clamp(frequency, 1f, 2f);
             ampSlider.value = amplitude;
