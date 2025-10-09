@@ -42,12 +42,12 @@ public class SineWaveAlt : MonoBehaviour
             commsFailure = true;
         }
 
-        else if (amplitude < 0.3 && frequency > 1.5f)
+        else if (amplitude < 0.25 && frequency > 1.5f)
         {
             commsFailure = false;
         }
 
-        if (frequency < 1.5f)
+        if (frequency < 1.85f)
         {
             commsFailure = true;
         }
