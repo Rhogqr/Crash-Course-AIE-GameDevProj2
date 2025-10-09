@@ -11163,6 +11163,39 @@ RectTransform:
   m_AnchoredPosition: {x: 3.1, y: 4.8}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1514131462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514131463}
+  m_Layer: 0
+  m_Name: RequiredOldWalls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514131463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514131462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5400002, z: 3.8199995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1985652758}
+  - {fileID: 1941833462}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516461455
 GameObject:
   m_ObjectHideFlags: 0
@@ -13596,11 +13629,11 @@ Transform:
   m_GameObject: {fileID: 1941833458}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5400002, z: 3.8199995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 26, y: 0.1, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1999040501}
+  m_Father: {fileID: 1514131463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985404735
 GameObject:
@@ -13776,11 +13809,11 @@ Transform:
   m_GameObject: {fileID: 1985652754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.8, z: 0}
+  m_LocalPosition: {x: 0, y: -5.34, z: -3.8199995}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1514131463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1999040500
 GameObject:
@@ -13792,7 +13825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999040501}
   m_Layer: 0
-  m_Name: GoodWalls
+  m_Name: ProtoWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13821,7 +13854,6 @@ Transform:
   - {fileID: 2044556955}
   - {fileID: 440174468}
   - {fileID: 1646974410}
-  - {fileID: 1941833462}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2009163263
@@ -15016,7 +15048,7 @@ SceneRoots:
   - {fileID: 644111764}
   - {fileID: 1603065555}
   - {fileID: 502120839}
-  - {fileID: 1985652758}
+  - {fileID: 1514131463}
   - {fileID: 1999040501}
   - {fileID: 845273095}
   - {fileID: 615078092}
