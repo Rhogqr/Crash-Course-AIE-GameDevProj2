@@ -9,16 +9,20 @@ public class HealthBar : MonoBehaviour
 
     PlayerStatsManager pSM;
     MainDoorTest mDT;
+    TaskDebuffAlien tDA;
 
     public float maxHealth = 100f;
     public float currentHealth;
     public float multiplier = 3f;
+    float temp;
     
     // Start is called before the first frame update
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
+        temp = multiplier;
 
         currentHealth = maxHealth;
         UpdateHealthBar();
@@ -29,6 +33,9 @@ public class HealthBar : MonoBehaviour
     {
         if (!pSM.isGameOver && mDT.progressCheck > 0)
         {
+            if (tDA.debuff2) multiplier = temp * 2f;
+            else multiplier = temp;
+
             currentHealth -= 1f * Time.deltaTime * multiplier;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
             UpdateHealthBar();

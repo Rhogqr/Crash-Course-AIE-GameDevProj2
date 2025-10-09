@@ -9,6 +9,7 @@ public class CameraSwitchView : MonoBehaviour
 {
     public PlayerStatsManager pSM;
     public MainDoorTest mDT;
+    public EyeStunAlien eSA;
 
     public bool mouseInZone = false;
     Quaternion lookRotation;
@@ -23,12 +24,12 @@ public class CameraSwitchView : MonoBehaviour
 
     public AudioClip onInteractAudioEventClip;
     AudioSource audioSource;
-
     // Start is called before the first frame update
     void Start()
     {
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        eSA = GameObject.Find("Eye Prototypes").GetComponent<EyeStunAlien>();
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -49,68 +50,42 @@ public class CameraSwitchView : MonoBehaviour
         // If you no longer need to turn, then stop turning
         // Start Looking
 
-        if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0)
-            
-        {
-            Instantiate(cameraTarget);
-            Debug.Log("Spawned CameraTarget");
-
-            mouseInZone = true;
-
-            degreesToTurn = Mathf.Clamp(-90 + degreesToTurn, -90, 90);
-
-            if (LookCoroutine != null)
+            if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0 && !Input.GetKey(KeyCode.Mouse0) && !eSA.isStunned)
             {
-                StopCoroutine(LookCoroutine);
-                Debug.Log("test 1");
+                Instantiate(cameraTarget);
+                Debug.Log("Spawned CameraTarget");
+
+                mouseInZone = true;
+
+                degreesToTurn = -90 + degreesToTurn;
+
+                if (LookCoroutine != null)
+                {
+                    StopCoroutine(LookCoroutine);
+                    Debug.Log("test 1");
+                }
+
+                LookCoroutine = StartCoroutine(LookAt());
             }
-
-            LookCoroutine = StartCoroutine(LookAt());
-        }
-        else if (Input.mousePosition.x > Screen.width * 9 / 10 && mouseInZone == false && currentRotation != 0)
-        {
-            Instantiate(cameraTarget);
-
-            mouseInZone = true;
-
-            degreesToTurn = Mathf.Clamp(90 + degreesToTurn, -90, 90);
-
-            if (LookCoroutine != null)
+            else if (Input.mousePosition.x > Screen.width * 9 / 10 && mouseInZone == false && currentRotation != 0 && !Input.GetKey(KeyCode.Mouse0) && !eSA.isStunned)
             {
-                StopCoroutine(LookCoroutine);
-                Debug.Log("test 2");
+                Instantiate(cameraTarget);
+
+                mouseInZone = true;
+
+                degreesToTurn = 90 + degreesToTurn;
+                if (LookCoroutine != null)
+                {
+                    StopCoroutine(LookCoroutine);
+                    Debug.Log("test 2");
+                }
+
+                LookCoroutine = StartCoroutine(LookAt());
             }
-
-            LookCoroutine = StartCoroutine(LookAt());
-        }
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y < Screen.width * 1 / 10 && mouseInZone == false && !Input.GetKey(KeyCode.Mouse0))
-        {
-            Instantiate(cameraTarget);
-
-            mouseInZone = true;
-            degreesToTurn = 180 * currentRotation;
-
-            if (LookCoroutine != null)
-            {
-                StopCoroutine(LookCoroutine);
-                Debug.Log("test 2");
-            }
-
-            LookCoroutine = StartCoroutine(LookAt());
-
-            // Knows if to swap forward/back
-            if (currentRotation != 0)
-            {
-                currentRotation = 0;
-            }
-            else
-            {
-                currentRotation = 1;
-            }
-        }
+        
 
         // if mouse not in zone, activate screen flipping again
-        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10 && Input.mousePosition.y > Screen.width * 1 / 10)
+        else if (Input.mousePosition.x > Screen.width * 1 / 10 && Input.mousePosition.x < Screen.width * 9 / 10)
         {
             mouseInZone = false;
         }
@@ -127,7 +102,7 @@ public class CameraSwitchView : MonoBehaviour
         lookRotation = Quaternion.LookRotation(cameraTargetDummy.transform.position - transform.position);
         
 
-        Debug.Log("LookRotation = " + lookRotation);
+        //Debug.Log("LookRotation = " + lookRotation);
         float time = 0;
         while (time < 1)
         {
