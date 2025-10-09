@@ -9,19 +9,19 @@ public class SineWaveAlt : MonoBehaviour
 {
     TaskDebuffAlien tDA;
     
-    public LineRenderer lineRenderer;
+    LineRenderer lineRenderer;
     public int pointsAlt;
 
-    public float amplitude = 1;
-    public float frequency = 1;
-    public float waveSpeed = 5;
+    [SerializeField] float amplitude = 1;
+    [SerializeField] float frequency = 1;
+    [SerializeField] float waveSpeed = 5;
 
     public Slider ampSlider;
     public Slider freqSlider;
 
-    public Vector2 xLimitsAlt = new Vector2(-2, 2);
+    [SerializeField] Vector2 xLimitsAlt = new Vector2(-2, 2);
 
-    [SerializeField] bool commsFailure;
+    public bool commsFailure;
 
     float multiplier = 1;
     float tempMult;

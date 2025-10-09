@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
     MainDoorTest mDT;
     TaskDebuffAlien tDA;
     EyeStunAlien eSA;
+    SineWaveAlt sWA;
 
     public float maxHealth = 100f;
     public float currentHealth;
@@ -24,6 +25,7 @@ public class HealthBar : MonoBehaviour
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
         eSA = GameObject.Find("Eye Prototypes").GetComponent<EyeStunAlien>();
+        sWA = GameObject.Find("SineWaveAlt").GetComponent<SineWaveAlt>();
         temp = multiplier;
 
         currentHealth = maxHealth;
@@ -41,7 +43,7 @@ public class HealthBar : MonoBehaviour
             currentHealth -= 1f * Time.deltaTime * multiplier;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
             UpdateHealthBar();
-            if (!eSA.isStunned)
+            if (!eSA.isStunned && !sWA.commsFailure)
             {
                 if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Left")
                 {
