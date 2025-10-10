@@ -50,10 +50,8 @@ public class LightSwitchTask : MonoBehaviour
 
     public void TurnRandomLightOff()
     {
-        for (int i = 0; i < sceneLights.Length; i++)
-        {
-            sceneLights[Random.Range(0, i+1)].SetActive(false);
-        }
+
+            sceneLights[Random.Range(0, sceneLights.Length)].SetActive(false);
     }
 
     private void LightSwitchRandomiser()
