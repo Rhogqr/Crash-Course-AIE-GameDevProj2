@@ -9,10 +9,11 @@ public class LightSwitchTask : MonoBehaviour
     [SerializeField] GameObject[] sceneLights;
     bool lightOff = false;
     bool runLightTask = false;
+    [SerializeField] int lightOffChance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(LightTurnOff());
     }
 
     // Update is called once per frame
@@ -48,9 +49,20 @@ public class LightSwitchTask : MonoBehaviour
         }
     }
 
+    IEnumerator LightTurnOff()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
+            int rand = Random.Range(0, lightOffChance);
+            if (rand == 0)
+            {
+                TurnRandomLightOff();
+            }
+        }
+    }
     public void TurnRandomLightOff()
     {
-
             sceneLights[Random.Range(0, sceneLights.Length)].SetActive(false);
     }
 
