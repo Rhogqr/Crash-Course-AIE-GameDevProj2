@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// i (reuben) didnt write this script, so comments may be a bit off
+
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
@@ -21,11 +23,14 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initialises the scripts of other objects for variables needed in this script
         pSM = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStatsManager>();
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
         eSA = GameObject.Find("Eye Prototypes").GetComponent<EyeStunAlien>();
         sWA = GameObject.Find("SineWaveAlt").GetComponent<SineWaveAlt>();
+
+        // initialises variables
         temp = multiplier;
 
         currentHealth = maxHealth;
@@ -35,6 +40,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //
         if (!pSM.isGameOver && mDT.progressCheck > 0)
         {
             if (tDA.debuff2) multiplier = temp * 2f;

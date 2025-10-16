@@ -17,20 +17,26 @@ public class DoorAlienAggro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initalises scripts in other objects to use their variables
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         lST = GameObject.Find("LightTaskHolder").GetComponent <LightSwitchTask>();
         tDA = GameObject.Find("Task Guy Prototypes").GetComponent<TaskDebuffAlien>();
         sWA = GameObject.Find("SineWaveAlt").GetComponent<SineWaveAlt>();
 
+        // initialises the spins/second counter
         prevProgressCheck = mDT.progressCheck;
+
+        // checks how many spins are done every second
         StartCoroutine(SpinCheckerDelay());
 
+        // initialises isSpinningTooFast so that the player doesnt get an instant jumpscare
         isSpinningTooFast = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if the player is deemed to be spinning too fast, then activate jumpscare
         if (isSpinningTooFast)
         {
             analogHorror.SetActive(true);
@@ -39,18 +45,14 @@ public class DoorAlienAggro : MonoBehaviour
         {
             analogHorror.SetActive(false); 
         }
-        Debug.Log("1" + tDA.debuff1);
-        Debug.Log("2" + tDA.debuff2);
-        Debug.Log("3" + lST.lightOff);
-        Debug.Log("4" + sWA.commsFailure);
+
+
         if (tDA.debuff1 || tDA.debuff2 || lST.lightOff || sWA.commsFailure)
         {
-            Debug.Log("Issues");
             noIssuesOnShip = false;
         }
         else
         {
-            Debug.Log("No Issues");
             noIssuesOnShip = true;
         }
     }
@@ -59,25 +61,29 @@ public class DoorAlienAggro : MonoBehaviour
     {
         while (true)
         {
+            // repeats the SpinChecker function once a second
             SpinChecker();
             yield return new WaitForSeconds(1f);
         }
     }
     void SpinChecker()
     {
+        // checks if the player is spinning equal to or more than 3 times / second
         if (prevProgressCheck - mDT.progressCheck >= 3)
         {
+            // if there are no issues on the ship, dont spawn door alien
             if (!noIssuesOnShip)
             {
-                Debug.Log("Spinning Too Fast");
+                // if there are issues on the ship the player should deal with, then let the door alien spawn
                 isSpinningTooFast = true;
             }
-
-            prevProgressCheck = mDT.progressCheck;
         }
         else
         {
+            // returns that the player is not spinning too fast
             isSpinningTooFast = false;
         }
+        // set every second to check teh difference between last and current second
+        prevProgressCheck = mDT.progressCheck;
     }
 }
