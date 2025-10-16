@@ -69,7 +69,7 @@ public class MainDoorTest : MonoBehaviour
         Vector2 rotation = mousePos - new Vector2(Screen.width / 2, Screen.height / 2);
 
         // converts the vector into an angle, then rotates the handle to that angle
-        rotZ = Mathf.Atan2(rotation.x, rotation.y) * Mathf.Rad2Deg;     Debug.Log(rotZ);
+        rotZ = Mathf.Atan2(rotation.x, rotation.y) * Mathf.Rad2Deg;
         handlePivot.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
 

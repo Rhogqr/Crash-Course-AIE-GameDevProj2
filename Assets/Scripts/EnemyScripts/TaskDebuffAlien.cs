@@ -54,7 +54,6 @@ public class TaskDebuffAlien : MonoBehaviour
             int rand = Random.Range(0, taskGuysChance);
             if (rand == 0)
             {
-                Debug.Log("errrm");
                 int rand2 = Random.Range(0, 2);
                 TaskGuys[rand2].gameObject.SetActive(true);
             }

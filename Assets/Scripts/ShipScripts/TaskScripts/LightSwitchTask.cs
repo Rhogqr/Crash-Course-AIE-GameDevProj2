@@ -7,7 +7,7 @@ public class LightSwitchTask : MonoBehaviour
 {
     [SerializeField] Toggle[] lightSwitches;
     [SerializeField] GameObject[] sceneLights;
-    bool lightOff = false;
+    public bool lightOff = false;
     bool runLightTask = false;
     [SerializeField] int lightOffChance;
     // Start is called before the first frame update
