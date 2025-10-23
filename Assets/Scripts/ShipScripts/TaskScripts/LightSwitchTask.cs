@@ -7,6 +7,7 @@ public class LightSwitchTask : MonoBehaviour
 {
     [SerializeField] Toggle[] lightSwitches;
     [SerializeField] GameObject[] sceneLights;
+    [SerializeField] GameObject[] switchObjects;
     public bool lightOff = false;
     bool runLightTask = false;
     [SerializeField] int lightOffChance;
@@ -50,6 +51,7 @@ public class LightSwitchTask : MonoBehaviour
             for (int i = 0; i < lightSwitches.Length; i++)
             {
                 lightSwitches[i].isOn = false;
+                switchObjects[i].transform.localRotation = Quaternion.Euler(-30, 0, 0);
             }
             lightOff = false;
         }
@@ -88,6 +90,7 @@ public class LightSwitchTask : MonoBehaviour
                     int randIndex;
                     randIndex = Random.Range(0, 8);
                     lightSwitches[randIndex].isOn = true;
+                    switchObjects[randIndex].transform.localRotation = Quaternion.Euler(30, 0, 0);
                 }
             while (!areFourSwitchesActive());
         }
@@ -129,6 +132,7 @@ public class LightSwitchTask : MonoBehaviour
             for (int i = 0; i < lightSwitches.Length; i++)
             {
                 lightSwitches[i].isOn = false;
+                switchObjects[i].transform.localRotation = Quaternion.Euler(-30, 0, 0);
             }
             return false;
             
