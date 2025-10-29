@@ -35,7 +35,6 @@ public class PlayerStatsManager : MonoBehaviour
         mainPlayerCam = GameObject.Find("Main Camera");
 
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
-        //engineBar = GameObject.Find("EngineCanvas").GetComponentInChildren<EngineBar>();
         healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
 
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
@@ -48,11 +47,10 @@ public class PlayerStatsManager : MonoBehaviour
     {
         if (!isGameOver)
         {
-            GetRotationAsString();
             CountdownLossManager();
             PlaySoundOnInteract();
 
-           if (/*engineBar.currentEngine <= 0 ||*/ healthBar.currentHealth <= 0)
+           if (healthBar.currentHealth <= 0)
            {
                 LoseText.SetActive(true);
                 isGameOver = true;
@@ -86,35 +84,6 @@ public class PlayerStatsManager : MonoBehaviour
         }
     }
 
-    private void GetRotationAsString()
-    {
-        //// because of the way that the camera animation works, the timing on this update is inconsistent. fix later?
-        //float currentDirection = mainPlayerCam.transform.rotation.eulerAngles.y;
-        //if (currentDirection == 0)
-        //{
-        //    // Forward
-        //    playerDirection = "Forward";
-        //}
-        //else if (currentDirection == 270)
-        //{
-        //    // Left
-        //    playerDirection = "Left";
-        //}
-        //else if (currentDirection == 90)
-        //{
-        //    // Right
-        //    playerDirection = "Right";
-        //}
-        //else if (currentDirection == 180)
-        //{
-        //    // Backward
-        //    playerDirection = "Backward";
-        //}
-        //else
-        //{
-        //    // how
-        //}
-    }
 
     private void OnTriggerEnter(Collider other)
     {
