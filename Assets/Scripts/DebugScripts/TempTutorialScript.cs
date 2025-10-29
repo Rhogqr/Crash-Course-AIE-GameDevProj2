@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TempTutorialScript : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class TempTutorialScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("PrototypeStartScreen");
+        }
+
 
         if (tempDirection != pSM.playerDirection)
         {
@@ -38,5 +44,7 @@ public class TempTutorialScript : MonoBehaviour
             }
         }
         tempDirection = pSM.playerDirection;
+
     }
+
 }

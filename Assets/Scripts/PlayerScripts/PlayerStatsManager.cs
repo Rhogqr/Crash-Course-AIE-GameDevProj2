@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
-
+using UnityEditor.SearchService;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 // as of now, most of this script does nothing. its currently linked to the door so dont delete this please!
 // i (reuben) plan to use this as storage for variables that revolve around the player (current rotation, time left, player health, etc.)
 
@@ -33,12 +35,10 @@ public class PlayerStatsManager : MonoBehaviour
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
+            mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+            healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
 
-        mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
-        healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
-
-        timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
-
+            timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -49,7 +49,6 @@ public class PlayerStatsManager : MonoBehaviour
         {
             CountdownLossManager();
             PlaySoundOnInteract();
-
            if (healthBar.currentHealth <= 0)
            {
                 LoseText.SetActive(true);
