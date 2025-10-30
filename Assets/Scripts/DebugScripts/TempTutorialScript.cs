@@ -45,7 +45,7 @@ public class TempTutorialScript : MonoBehaviour
         //    switch (tempDirection)
         //    {
         //        case "Forward":
-        //            tutorialScreens[0].SetActive(false);
+        //            tutorialScreens[0].SetActive(false); 
         //            break;
         //        case "Left":
         //            tutorialScreens[1].SetActive(false);
