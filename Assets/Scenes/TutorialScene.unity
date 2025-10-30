@@ -7770,7 +7770,7 @@ MonoBehaviour:
   playerDirection: 
   timerText: {fileID: 0}
   LoseText: {fileID: 787899252}
-  timerTime: 180
+  timerTime: 10000
   isGameOver: 0
   onInteractAudioEventClip: {fileID: 0}
   targetFPS: 60
@@ -10755,7 +10755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1453818937
 RectTransform:
   m_ObjectHideFlags: 0

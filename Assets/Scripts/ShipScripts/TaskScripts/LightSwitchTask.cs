@@ -16,6 +16,7 @@ public class LightSwitchTask : MonoBehaviour
     {
         // starts the function that randomly turns off lights
         StartCoroutine(LightTurnOff());
+        
     }
 
     // Update is called once per frame
@@ -27,6 +28,22 @@ public class LightSwitchTask : MonoBehaviour
         LightSwitchRandomiser();
         //checks if the player has finished the puzzle
         SwitchesOnChecker();
+
+        for (int i = 0; i < lightSwitches.Length; i++)
+        {
+            if (lightSwitches[i].isOn)
+            {
+                switchObjects[i].transform.localRotation = Quaternion.Euler(-30, 0, 0);
+                var renderer = switchObjects[i].GetComponent<Renderer>();
+                renderer.material.color = Color.black;
+            }
+            else
+            {
+                switchObjects[i].transform.localRotation = Quaternion.Euler(30, 0, 0);
+                var renderer = switchObjects[i].GetComponent<Renderer>();
+                renderer.material.color = Color.red;
+            }
+        }
     }
 
     private void SwitchesOnChecker()
@@ -44,16 +61,11 @@ public class LightSwitchTask : MonoBehaviour
         // if all toggles are on, then turn on every light, and turn off all the toggles to 'reset'
         if (tempLightChecker == 8)
         {
+            lightOff = false;
             for (int i = 0; i < sceneLights.Length; i++)
             {
                 sceneLights[i].SetActive(true);
             }
-            for (int i = 0; i < lightSwitches.Length; i++)
-            {
-                lightSwitches[i].isOn = false;
-                switchObjects[i].transform.localRotation = Quaternion.Euler(-30, 0, 0);
-            }
-            lightOff = false;
         }
     }
 
@@ -89,8 +101,7 @@ public class LightSwitchTask : MonoBehaviour
                     // chooses a random toggle in the array, then sets it to true
                     int randIndex;
                     randIndex = Random.Range(0, 8);
-                    lightSwitches[randIndex].isOn = true;
-                    switchObjects[randIndex].transform.localRotation = Quaternion.Euler(30, 0, 0);
+                    lightSwitches[randIndex].isOn = false;
                 }
             while (!areFourSwitchesActive());
         }
@@ -116,7 +127,7 @@ public class LightSwitchTask : MonoBehaviour
         int switchesOn = 0;
         for (int i = 0; i < lightSwitches.Length; i++)
         {
-            if (lightSwitches[i].isOn)
+            if (!lightSwitches[i].isOn)
             {
                 switchesOn++;
             }
@@ -131,8 +142,7 @@ public class LightSwitchTask : MonoBehaviour
             // reset the puzzle if repeats are found
             for (int i = 0; i < lightSwitches.Length; i++)
             {
-                lightSwitches[i].isOn = false;
-                switchObjects[i].transform.localRotation = Quaternion.Euler(-30, 0, 0);
+                lightSwitches[i].isOn = true;
             }
             return false;
             
