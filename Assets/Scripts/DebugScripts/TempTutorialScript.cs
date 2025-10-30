@@ -14,7 +14,7 @@ public class TempTutorialScript : MonoBehaviour
     [SerializeField] GameObject HealthBar;
     [SerializeField] GameObject SineWave;
     [SerializeField] GameObject SineWaveAlt;
-    //[SerializeField] GameObject OxygenPump;
+    [SerializeField] GameObject OxygenPump;
     [SerializeField] GameObject EyeAlien;
     [SerializeField] GameObject TaskAlien;
 
@@ -25,7 +25,7 @@ public class TempTutorialScript : MonoBehaviour
         HealthBar.SetActive(false);
         SineWave.SetActive(false);
         SineWaveAlt.SetActive(false);
-        //OxygenPump.SetActive(false);
+        OxygenPump.SetActive(false);
         EyeAlien.SetActive(false);
         TaskAlien.SetActive(false);
     }
@@ -40,37 +40,15 @@ public class TempTutorialScript : MonoBehaviour
 
         transform.rotation = mainPlayerCam.transform.rotation;
 
-        //if (tempDirection != playerDirection)
-        //{
-        //    switch (tempDirection)
-        //    {
-        //        case "Forward":
-        //            tutorialScreens[0].SetActive(false); 
-        //            break;
-        //        case "Left":
-        //            tutorialScreens[1].SetActive(false);
-        //            break;
-        //        case "Right":
-        //            tutorialScreens[2].SetActive(false);
-        //            break;
-        //        case "Backward":
-        //            tutorialScreens[3].SetActive(false);
-        //            break;
-
-        //    }
-        //}
-        //tempDirection = playerDirection;
-
         if (playerDirection == "Forward")
         {
             tutorialScreens[0].SetActive(true);
-            //if (OxygenPump != null)
-            //OxygenPump.SetActive(true);
+            OxygenPump.SetActive(true);
         }
         else
         {
             tutorialScreens[0].SetActive(false);
-            //OxygenPump.SetActive(false);
+            OxygenPump.SetActive(false);
         }
         if (playerDirection == "Left")
         {

@@ -746,15 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8795f132a6f80a348bdf49c906213833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragOffset: {x: 0, y: 0, z: 0}
-  pumpMin: 0
-  pumpMax: 0
-  meterPrcnt: 0
   pumpMeter: {fileID: 2035455535}
-  currentPos: {x: 0, y: 0, z: 0}
-  pumpFailSafe: 0
-  minPosY: 1.247
-  maxPosY: 1.78
 --- !u!54 &1198772296
 Rigidbody:
   m_ObjectHideFlags: 0

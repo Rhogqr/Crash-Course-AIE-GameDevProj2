@@ -7,16 +7,32 @@ using UnityEngine;
 public class PumpScript : MonoBehaviour
 {
     private Vector3 dragOffset;
-    private float startY, minY, maxY, meterPrcnt;
-    // private float maxY = 1.78;
-    // private float minY = 1.247;
+    private float startY, minY, maxY;
+    int meterPrcnt;
     public TextMeshProUGUI pumpMeter;
     private Vector3 currentPos;
-
+    bool increaseOxygen;
     private void Start()
     {
-        meterPrcnt = Mathf.Clamp(meterPrcnt, 0f, 100f);
+        meterPrcnt = 100;
         pumpMeter.text = meterPrcnt.ToString(meterPrcnt + "%");
+        increaseOxygen = true;
+        StartCoroutine(decreaseOxygenOverTime());
+    }
+
+    private void Update()
+    {
+        /*
+         * if (meterPrcnt <= 50)
+         * {
+         *      blur the screen
+         * }
+         * 
+         * if (gameOver)
+         * {
+         *      StopAllCoroutines();
+         * }
+         */
     }
 
     void OnMouseDown()
@@ -27,8 +43,8 @@ public class PumpScript : MonoBehaviour
 
     void OnMouseDrag()
     {
-        minY = 1.247f;
-        maxY = 1.78f;
+        minY = -0.21f;
+        maxY = 0.314f;
 
         Vector3 currentScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
         currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + dragOffset;
@@ -39,13 +55,30 @@ public class PumpScript : MonoBehaviour
         {
             UpdateMeter();
         }
+        if (transform.position.y == maxY)
+        {
+            increaseOxygen = true;
+        }
     }
     
    void UpdateMeter()
    {
-        meterPrcnt += 10f;
-        pumpMeter.text = meterPrcnt.ToString(meterPrcnt + "%");
+        if (increaseOxygen)
+        {
+            meterPrcnt = Mathf.Clamp(meterPrcnt + 10, 0, 100);
+            pumpMeter.text = meterPrcnt + "%";
+            increaseOxygen = false;
+        }
+   }
+
+    IEnumerator decreaseOxygenOverTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            meterPrcnt = Mathf.Clamp(meterPrcnt-1, 0, 100);
+            pumpMeter.text = meterPrcnt + "%";
+        }
     }
-   
 }
 
