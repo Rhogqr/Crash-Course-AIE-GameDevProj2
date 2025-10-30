@@ -14,7 +14,6 @@ public class PlayerStatsManager : MonoBehaviour
     public GameObject mainPlayerCam;
 
     public MainDoorTest mDT;
-    public EngineBar engineBar;
     public HealthBar healthBar;
 
     public string playerDirection;
