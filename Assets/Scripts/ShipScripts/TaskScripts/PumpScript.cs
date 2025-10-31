@@ -8,7 +8,7 @@ public class PumpScript : MonoBehaviour
 {
     private Vector3 dragOffset;
     private float startY, minY, maxY;
-    int meterPrcnt;
+    public int meterPrcnt;
     public TextMeshProUGUI pumpMeter;
     private Vector3 currentPos;
     bool increaseOxygen;
