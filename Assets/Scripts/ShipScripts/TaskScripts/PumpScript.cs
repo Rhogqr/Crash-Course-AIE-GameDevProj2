@@ -3,64 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PumpScript : MonoBehaviour
 {
-    private Vector3 dragOffset;
-    private float startY, minY, maxY;
     public int meterPrcnt;
     public TextMeshProUGUI pumpMeter;
-    private Vector3 currentPos;
+    [SerializeField] GameObject blurEffect;
     bool increaseOxygen;
+
+    Slider pumpSlider;
+
+
     private void Start()
     {
         meterPrcnt = 100;
-        pumpMeter.text = meterPrcnt.ToString(meterPrcnt + "%");
+        pumpMeter.text = meterPrcnt + "%";
         increaseOxygen = true;
         StartCoroutine(decreaseOxygenOverTime());
+
+        pumpSlider = GetComponent<Slider>();
     }
 
     private void Update()
     {
-        /*
-         * if (meterPrcnt <= 50)
-         * {
-         *      blur the screen
-         * }
-         * 
-         * if (gameOver)
-         * {
-         *      StopAllCoroutines();
-         * }
-         */
-    }
-
-    void OnMouseDown()
-    {
-        startY = transform.position.y;
-        dragOffset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z));
-    }
-
-    void OnMouseDrag()
-    {
-        minY = -0.21f;
-        maxY = 0.314f;
-
-        Vector3 currentScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
-        currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + dragOffset;
-        float yAxisLimit = Mathf.Clamp(currentPos.y, minY, maxY);
-        transform.position = new Vector3(transform.position.x, yAxisLimit, transform.position.z);
-
-        if (transform.position.y == minY)
+        if (meterPrcnt <= 25)
         {
-            UpdateMeter();
+             blurEffect.SetActive(true);
         }
-        if (transform.position.y == maxY)
+        else
+        {
+            blurEffect.SetActive(false);
+        }
+
+        if (pumpSlider.value <= 0.1f)
         {
             increaseOxygen = true;
         }
+        if (pumpSlider.value >= 0.9f)
+        {
+            UpdateMeter();
+        }
     }
-    
+        
    void UpdateMeter()
    {
         if (increaseOxygen)

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightSwitch
+  m_Name: Display
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -27,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 9799bf037a1c39d4983ab0bf0cf0b524, type: 3}
+        m_Texture: {fileID: 2800000, guid: 39a590d9b0a89604fb15b555c9e338e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -47,19 +47,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c6372f0f409a75a45a3470ca74b46615, type: 3}
+        m_Texture: {fileID: 2800000, guid: a2fb800039069754487e37c3ff1b82da, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 1f57dea02d6978c4fbd86ef31cb8d535, type: 3}
+        m_Texture: {fileID: 2800000, guid: 29e33ef8a81f9c743987671814e33597, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 5587466be3f038b4daf206a1e2216125, type: 3}
+        m_Texture: {fileID: 2800000, guid: 811585f43104296418fe37663b8f1438, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 41ac4bc095de13e4992a2a40767cbff4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1e2ba1bc7df33034586231bc5a33fdf4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
