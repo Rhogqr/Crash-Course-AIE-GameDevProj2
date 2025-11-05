@@ -19,6 +19,8 @@ public class PlayerStatsManager : MonoBehaviour
     public string playerDirection;
 
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText1;
+    public TextMeshProUGUI timerText2;
     public GameObject LoseText;
     public float timerTime;
     public bool isGameOver = false;
@@ -34,10 +36,8 @@ public class PlayerStatsManager : MonoBehaviour
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
-            mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
-            healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
-
-            timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
+        mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
+        healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -79,7 +79,10 @@ public class PlayerStatsManager : MonoBehaviour
             timerTime -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(timerTime / 60);
             int seconds = Mathf.FloorToInt(timerTime % 60);
+            // cant make an array of TMP so have to do this the long way
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText1.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText2.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         else if (timerTime <= 1)
         {
@@ -87,8 +90,6 @@ public class PlayerStatsManager : MonoBehaviour
             isGameOver = true;
         }
     }
-
-
     private void OnTriggerEnter(Collider other)
     {
         // gets the direciton the player is facing

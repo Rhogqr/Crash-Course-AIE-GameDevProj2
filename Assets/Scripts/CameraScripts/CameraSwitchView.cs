@@ -53,7 +53,6 @@ public class CameraSwitchView : MonoBehaviour
             if (Input.mousePosition.x < Screen.width * 1 / 10 && mouseInZone == false && currentRotation != 0 && !Input.GetKey(KeyCode.Mouse0) && !eSA.isStunned)
             {
                 Instantiate(cameraTarget);
-                Debug.Log("Spawned CameraTarget");
 
                 mouseInZone = true;
 
@@ -62,7 +61,6 @@ public class CameraSwitchView : MonoBehaviour
                 if (LookCoroutine != null)
                 {
                     StopCoroutine(LookCoroutine);
-                    Debug.Log("test 1");
                 }
 
                 LookCoroutine = StartCoroutine(LookAt());
@@ -77,7 +75,6 @@ public class CameraSwitchView : MonoBehaviour
                 if (LookCoroutine != null)
                 {
                     StopCoroutine(LookCoroutine);
-                    Debug.Log("test 2");
                 }
 
                 LookCoroutine = StartCoroutine(LookAt());
@@ -100,9 +97,7 @@ public class CameraSwitchView : MonoBehaviour
         cameraTargetDummy = GameObject.FindGameObjectWithTag("Target");
 
         lookRotation = Quaternion.LookRotation(cameraTargetDummy.transform.position - transform.position);
-        
 
-        //Debug.Log("LookRotation = " + lookRotation);
         float time = 0;
         while (time < 1)
         {
