@@ -11,7 +11,7 @@ public class PumpScript : MonoBehaviour
     public TextMeshProUGUI pumpMeter;
     [SerializeField] GameObject blurEffect;
     bool increaseOxygen;
-
+    [SerializeField] AudioSource pumpAudioSource;
     Slider pumpSlider;
 
 
@@ -58,6 +58,7 @@ public class PumpScript : MonoBehaviour
         {
             meterPrcnt = Mathf.Clamp(meterPrcnt + 10, 0, 100);
             pumpMeter.text = meterPrcnt + "%";
+            pumpAudioSource.Play();
             increaseOxygen = false;
         }
    }

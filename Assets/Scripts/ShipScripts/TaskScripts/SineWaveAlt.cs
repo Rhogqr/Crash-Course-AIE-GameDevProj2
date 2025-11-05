@@ -26,6 +26,8 @@ public class SineWaveAlt : MonoBehaviour
     float multiplier = 1;
     float tempMult;
 
+    [SerializeField] AudioSource commsBackSound;
+    bool dontRepeatSound = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,18 +64,22 @@ public class SineWaveAlt : MonoBehaviour
         if (amplitude > 0.3f)
         {
             commsFailure = true;
+            dontRepeatSound = false;
         }
 
         // if neither are too high or too low, then set commsfailure false
-        else if (amplitude < 0.25 && frequency > 1.5f)
+        else if (amplitude < 0.25 && frequency > 1.5f && !dontRepeatSound)
         {
             commsFailure = false;
+            commsBackSound.Play();
+            dontRepeatSound = true;
         }
 
         // if freq. is lower than [value2], then set comssfailure true
         if (frequency < 1.85f)
         {
             commsFailure = true;
+            dontRepeatSound = false;
         }
     }
 

@@ -15,6 +15,8 @@ public class HealthBar : MonoBehaviour
     EyeStunAlien eSA;
     SineWaveAlt sWA;
 
+    [SerializeField] AudioSource healSound;
+
     public float maxHealth = 100f;
     public float currentHealth;
     public float multiplier = 3f;
@@ -57,6 +59,7 @@ public class HealthBar : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Left")
                 {
                     currentHealth += 2.5f;
+                    healSound.Play();
                     UpdateHealthBar();
                 }
             }

@@ -8,6 +8,7 @@ public class LightSwitchTask : MonoBehaviour
     [SerializeField] Toggle[] lightSwitches;
     [SerializeField] GameObject[] sceneLights;
     [SerializeField] GameObject[] switchObjects;
+    [SerializeField] AudioSource lightSwitchAudioSource;
     public bool lightOff = false;
     bool runLightTask = false;
     [SerializeField] int lightOffChance;
@@ -53,7 +54,6 @@ public class LightSwitchTask : MonoBehaviour
         int tempLightChecker = 0;
         for (int i = 0; i < lightSwitches.Length; i++)
         {
-
             if (lightSwitches[i].isOn)
             {
                 tempLightChecker++;
@@ -148,5 +148,10 @@ public class LightSwitchTask : MonoBehaviour
             return false;
             
         }     
+    }
+
+    public void playLightSwitchSound()
+    {
+        lightSwitchAudioSource.Play();
     }
 }
