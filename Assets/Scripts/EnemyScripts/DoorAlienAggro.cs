@@ -46,7 +46,7 @@ public class DoorAlienAggro : MonoBehaviour
             analogHorror.SetActive(false); 
         }
 
-
+        // checks if there are any issues on ships, if so sets the bool that caps spins at 3/s to false
         if (tDA.debuff1 || tDA.debuff2 || lST.lightOff || sWA.commsFailure)
         {
             noIssuesOnShip = false;

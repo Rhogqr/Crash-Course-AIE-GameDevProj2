@@ -17,16 +17,20 @@ public class PumpScript : MonoBehaviour
 
     private void Start()
     {
+        // initialise oxygen to 100%
         meterPrcnt = 100;
+        // display oxygen percentage on meter
         pumpMeter.text = meterPrcnt + "%";
         increaseOxygen = true;
+        // start decreasing oxygen over time
         StartCoroutine(decreaseOxygenOverTime());
-
+        // get slider component
         pumpSlider = GetComponent<Slider>();
     }
 
     private void Update()
     {
+        // if the oxygen meter is at or below 25%, enable blur effect
         if (meterPrcnt <= 25)
         {
              blurEffect.SetActive(true);
@@ -36,6 +40,7 @@ public class PumpScript : MonoBehaviour
             blurEffect.SetActive(false);
         }
 
+        // when the slider is at the bottom, allow oxygen increase, but only once per full pump
         if (pumpSlider.value <= 0.1f)
         {
             increaseOxygen = true;
@@ -48,6 +53,7 @@ public class PumpScript : MonoBehaviour
         
    void UpdateMeter()
    {
+        // increase oxygen by 10%, clamped to a maximum of 100%
         if (increaseOxygen)
         {
             meterPrcnt = Mathf.Clamp(meterPrcnt + 10, 0, 100);
@@ -58,6 +64,7 @@ public class PumpScript : MonoBehaviour
 
     IEnumerator decreaseOxygenOverTime()
     {
+        // decrease oxygen by 1% every 0.5 seconds
         while (true)
         {
             yield return new WaitForSeconds(0.5f);

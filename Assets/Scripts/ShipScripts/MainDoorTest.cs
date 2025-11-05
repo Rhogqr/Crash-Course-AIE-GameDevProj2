@@ -73,7 +73,7 @@ public class MainDoorTest : MonoBehaviour
         handlePivot.transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
 
-        // progress checker for rotating handle [[THIS CODE IS NOT FINAL -- I CAN LITERALLY ALREADY SEE A LOOPHOLE IN IMPLEMENTATION]]
+        // progress checker for rotating handle
 
         if (rotZ >= 0 && rotZ <= 90 && fullCycleComplete)
         {

@@ -29,6 +29,7 @@ public class LightSwitchTask : MonoBehaviour
         //checks if the player has finished the puzzle
         SwitchesOnChecker();
 
+        // updates the visual representation of the toggles
         for (int i = 0; i < lightSwitches.Length; i++)
         {
             if (lightSwitches[i].isOn)

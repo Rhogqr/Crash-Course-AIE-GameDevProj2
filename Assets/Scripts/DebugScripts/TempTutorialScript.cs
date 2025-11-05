@@ -22,6 +22,7 @@ public class TempTutorialScript : MonoBehaviour
     void Start()
     {
         mainPlayerCam = GameObject.Find("Main Camera");
+        // turns off functionality for most objects in the scene
         HealthBar.SetActive(false);
         SineWave.SetActive(false);
         SineWaveAlt.SetActive(false);
@@ -35,11 +36,14 @@ public class TempTutorialScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
+            // if escape is pressed, load the main menu scene
             SceneManager.LoadScene("PrototypeStartScreen");
         }
 
+        // since the player stats manager is not active in this scene, we use this temp method to track player direction
         transform.rotation = mainPlayerCam.transform.rotation;
 
+        // shows and hides tutorial screens based on player direction
         if (playerDirection == "Forward")
         {
             tutorialScreens[0].SetActive(true);
@@ -81,6 +85,7 @@ public class TempTutorialScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // gets the player direction
         if (other.CompareTag("Direction"))
         {
             playerDirection = other.name;

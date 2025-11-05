@@ -26,8 +26,10 @@ public class EyeStunAlien : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // runs a small chance to spawn the eye alien if the player has changed direction
         EyeSpawn();
 
+        // if an eye is summoned, wait a few seconds to see if the player moves or stays on the screen
         if (isSummoned)
         {
             StartCoroutine(VariableDelay());
@@ -36,8 +38,10 @@ public class EyeStunAlien : MonoBehaviour
     }
     IEnumerator VariableDelay()
     {
+        // waits 2 seconds to see if the player has moved
         yield return new WaitForSeconds(2);
 
+        // gets which eye is active
         int isPlayerMoved = 0;
         for (int i = 0; i < eyeGuys.Length; i++)
         {
@@ -48,6 +52,7 @@ public class EyeStunAlien : MonoBehaviour
             }
         }
 
+        // if the player hasnt moved, stun them with a lightning effect
         if (isPlayerMoved > 0)
         {
             isStunned = true;
@@ -60,6 +65,7 @@ public class EyeStunAlien : MonoBehaviour
             isSummoned = false;
             isStunned = false;
         }
+        // if the player has moved, dont stun
         else
         {
             isSummoned = false;
@@ -69,13 +75,16 @@ public class EyeStunAlien : MonoBehaviour
     }
     private void EyeSpawn()
     {
+        
         if (directionChecker != pSM.playerDirection)
         {
+            // if the player has looked away from eye alien, then turn it off
             for (int i = 0; i < eyeGuys.Length; i++)
             {
                 eyeGuys[i].SetActive(false);
             }
 
+            // random chance to spawn eye alien
             int doEyeSpawn;
             doEyeSpawn = Random.Range(0, eyeChance);
             if (doEyeSpawn == 0)

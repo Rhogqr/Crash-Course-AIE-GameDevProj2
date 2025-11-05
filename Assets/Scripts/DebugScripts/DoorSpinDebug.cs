@@ -22,6 +22,7 @@ public class DoorSpinDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // debug text to show door progress and spins per second when testing the game
         spinsLeft.text = "Door Progress: " + mDT.progressCheck;
         spinSpeed.text = "spins/second: " + (dAA.prevProgressCheck - mDT.progressCheck);
     }

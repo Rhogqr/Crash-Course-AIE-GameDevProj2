@@ -44,22 +44,27 @@ public class PlayerStatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the game is not over, 
         if (!isGameOver)
         {
+            // manage the countdown timer
             CountdownLossManager();
+            // if the player interacts with something, play the interaction sound
             PlaySoundOnInteract();
-           if (healthBar.currentHealth <= 0)
-           {
+            // if health = 0, then game over
+            if (healthBar.currentHealth <= 0)
+            {
                 LoseText.SetActive(true);
                 isGameOver = true;
-           }
-           transform.rotation = mainPlayerCam.transform.rotation;
+            }
+            transform.rotation = mainPlayerCam.transform.rotation;
         }
     }
 
     private void PlaySoundOnInteract()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (playerDirection == "Left" || playerDirection == "Right"))
+        // if player interacts, then play sound
+        if (Input.GetKeyDown(KeyCode.E) && (playerDirection == "Left"))
         {
             audioSource.clip = onInteractAudioEventClip;
             audioSource.Play();
@@ -68,6 +73,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void CountdownLossManager()
     {
+        // manages the countdown timer and triggers game over when it hits 0
         if (timerTime >= 1 && !isGameOver && mDT.progressCheck > 0)
         {
             timerTime -= Time.deltaTime;
@@ -85,6 +91,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // gets the direciton the player is facing
         if (other.CompareTag("Direction"))
         {
             playerDirection = other.name;
@@ -93,6 +100,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void Awake()
     {
+        // fps = 60
         Application.targetFrameRate = targetFPS;
     }
 }

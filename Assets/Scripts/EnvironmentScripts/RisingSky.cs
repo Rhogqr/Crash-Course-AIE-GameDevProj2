@@ -22,6 +22,7 @@ public class RisingSky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // moves the skybox up over the duration of the countdown timer
         timeOfSkyRise = maxCountdownTime * Time.deltaTime;
         if (mDT.progressCheck > 0 && !pSM.isGameOver)
         {

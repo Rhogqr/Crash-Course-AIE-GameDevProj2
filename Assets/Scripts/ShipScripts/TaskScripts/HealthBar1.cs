@@ -40,15 +40,18 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //
+        // if the game is not over
         if (!pSM.isGameOver && mDT.progressCheck > 0)
         {
+            // if the task alien is on the left, the health goes gown by 2x
             if (tDA.debuff2) multiplier = temp * 2f;
             else multiplier = temp;
 
+            // health goes down by 1 per second times the multiplier
             currentHealth -= 1f * Time.deltaTime * multiplier;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
             UpdateHealthBar();
+            // if the eye alien is not stunning the player and there is no sine wave comms failure, the player can heal by pressing E when facing left
             if (!eSA.isStunned && !sWA.commsFailure)
             {
                 if (Input.GetKeyDown(KeyCode.E) && pSM.playerDirection == "Left")
@@ -62,6 +65,7 @@ public class HealthBar : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        // updates the health bar fill amount based on current health
         healthBar.fillAmount = currentHealth / maxHealth;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
     }
