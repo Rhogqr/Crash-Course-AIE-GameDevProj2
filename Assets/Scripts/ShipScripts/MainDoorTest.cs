@@ -52,11 +52,9 @@ public class MainDoorTest : MonoBehaviour
             }
         }
         
-        // if wheel is spun enough, then open the door (rotate it -90 over 90/doorAnimSpeed frames)
+        // if wheel is spun enough, game ends
         if (progressCheck <= 0 && timer / doorAnimSpeed >= -90)
         {
-            //doorPivot.transform.rotation = Quaternion.Euler(timer / doorAnimSpeed, 0, 0);
-            //timer--;
             WinText.SetActive(true);
         }
     }
