@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
-using UnityEditor.SearchService;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
-// as of now, most of this script does nothing. its currently linked to the door so dont delete this please!
-// i (reuben) plan to use this as storage for variables that revolve around the player (current rotation, time left, player health, etc.)
 
 public class PlayerStatsManager : MonoBehaviour
 {
@@ -39,11 +36,22 @@ public class PlayerStatsManager : MonoBehaviour
         mDT = GameObject.Find("Vault_Door").GetComponent<MainDoorTest>();
         healthBar = GameObject.Find("HealthCanvas").GetComponentInChildren<HealthBar>();
         audioSource = GetComponent<AudioSource>();
+
+        // fps = 60
+        Application.targetFrameRate = targetFPS;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver)
+        {
+            // freeze time
+            Time.timeScale = 0f;
+            // unlock cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         // if the game is not over, 
         if (!isGameOver)
         {
@@ -97,11 +105,5 @@ public class PlayerStatsManager : MonoBehaviour
         {
             playerDirection = other.name;
         }
-    }
-
-    private void Awake()
-    {
-        // fps = 60
-        Application.targetFrameRate = targetFPS;
     }
 }
